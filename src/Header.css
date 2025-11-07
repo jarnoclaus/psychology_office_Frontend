@@ -1,0 +1,16 @@
+header {
+    background-color: beige;
+    display: flex;
+    align-items: end;
+    padding: 20px;
+    border-radius: 8px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    justify-content: flex-end;
+}
+
+header img {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+}
