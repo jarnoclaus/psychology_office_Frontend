@@ -41,6 +41,10 @@ export default function Login({ setIsLoggedIn }) {
                 throw new Error(errorData.message);
             }
 
+            const data = await response.json();
+            localStorage.setItem('token', data.jwt);
+            localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, isAdmin: data.isAdmin }));
+
             setStatus("Successfully logged in!");
             setEmail("");
             setPassword("");

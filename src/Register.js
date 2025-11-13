@@ -26,6 +26,12 @@ export default function Register() {
         else if (!/^BE\d{2}(?:\s?\d{4}){3}$/.test(iban)) newErrors.iban = "Invalid Belgian IBAN format";
         else if (!isValidIban(iban)) newErrors.iban = "Invalid IBAN";
 
+        if (!name) newErrors.name = "Name is required";
+        if (!surname) newErrors.surname = "Surname is required";
+        if (!street) newErrors.street = "Street is required";
+        if (!postalcode) newErrors.postalcode = "Postalcode is required";
+        if (!city) newErrors.city = "City is requireed";
+
         setErrors(newErrors);
 
         return Object.keys(newErrors).length === 0;
@@ -64,15 +70,21 @@ export default function Register() {
         <div>
             <form onSubmit={handleSubmit}>
                 <label>Name: <input type="text" value={name} onChange={(e) => setName(e.target.value)} /></label><br />
+                {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
                 <label>Surname: <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} /></label><br />
+                {errors.surname && <p style={{ color: 'red' }}>{errors.surname}</p>}
                 <label>Email: <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" /></label><br />
                 {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
                 <label>Password: <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></label><br />
                 {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
                 <label>Iban: <input type="text" value={iban} onChange={(e) => setIban(e.target.value)} /></label><br />
+                {errors.iban && <p style={{ color: 'red' }}>{errors.iban}</p>}
                 <label>Street: <input type="text" value={street} onChange={(e) => setStreet(e.target.value)} /></label><br />
+                {errors.street && <p style={{ color: 'red' }}>{errors.street}</p>}
                 <label>Postalcode: <input type="text" value={postalcode} onChange={(e) => setPostalcode(e.target.value)} /></label><br />
+                {errors.postalcode && <p style={{ color: 'red' }}>{errors.postalcode}</p>}
                 <label>City: <input type="text" value={city} onChange={(e) => setCity(e.target.value)} /></label><br />
+                {errors.city && <p style={{ color: 'red' }}>{errors.city}</p>}
                 <button type="submit">Register</button>
             </form>
             {status && <p>{status}</p>}
@@ -81,7 +93,7 @@ export default function Register() {
 }
 
 function isValidIban(iban) {
-    iban = iban.replace(/\s+/g, '').ToUpperCase();
+    iban = iban.replace(/\s+/g, '').toUpperCase();
 
     const rearranged = iban.substring(4) + iban.substring(0, 4);
 
