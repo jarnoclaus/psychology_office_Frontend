@@ -1,14 +1,4 @@
-.homepage {
-  background-image: url('./images/Background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+/* Table */
 .table-container {
   overflow-x: auto;
   margin: 20px 0;
@@ -19,11 +9,13 @@ table {
   border-collapse: collapse;
   font-size: 14px;
   text-align: left;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 thead {
-  background-color: grey;
-  color: white;
+  background-color: #34495e;
+  color: #ecf0f1;
   font-size: 22px;
 }
 
@@ -39,6 +31,269 @@ tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
+tbody tr:nth-child(odd) {
+  background-color: #ecf0f1;
+}
+
+tbody tr:hover {
+  background-color: #d1f0e0;
+}
+
 td {
   padding: 10px 15px;
+}
+
+/* Account dashboard */
+.account-dashboard {
+  display: flex;
+  min-height: 80vh;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #2c3e50;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+}
+
+.sidebar button {
+  background-color: #34495e;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sidebar button:hover {
+  background-color: #1abc9c;
+}
+
+.sidebar button.active {
+  background-color: #1abc9c;
+  font-weight: bold;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #ecf0f1;
+}
+
+.add-appointment {
+  background-color: #ecf0f1;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.add-appointment h3 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.datepicker {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #bdc3c7;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.accept-btn {
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+}
+
+.accept-btn:hover {
+  background-color: #16a085;
+}
+
+.status {
+  margin-top: 15px;
+  color: red;
+  font-weight: 500;
+}
+
+.dashboard-header {
+  margin-bottom: 30px;
+  padding: 20px 25px;
+  background-color: #ecf0f1;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header h1 {
+  font-size: 28px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.dashboard-header .next-appointment {
+  font-size: 16px;
+  color: #34495e;
+  padding: 10px 0;
+  border-top: 1px solid #bdc3c7;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Login page */
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  min-height: 80vh;
+  background-color: #ecf0f1;
+  font-family: Arial, sans-serif;
+}
+
+.login-form,
+.register-form-login {
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.login-form h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  font-weight: 500;
+  color: #34495e;
+}
+
+input {
+  padding: 10px 12px;
+  margin-top: 5px;
+  border: 1px solid #bdc3c7;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: #1abc9c;
+  box-shadow: 0 0 3px #1abc9c;
+}
+
+.primary-btn {
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  padding: 12px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+.primary-btn:hover {
+  background-color: #16a085;
+}
+
+.secondary-btn {
+  background-color: #34495e;
+  color: white;
+  border: none;
+  padding: 12px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+.secondary-btn:hover {
+  background-color: #2c3e50;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.status {
+  font-size: 18px;
+  color: #e67e22;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Register page */
+
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f4f8;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.register-form {
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.register-form h2 {
+  color: #2c3e50;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.form-row .half {
+  flex: 1;
+}
+
+.register-form .primary-btn {
+  margin-top: 10px;
 }

@@ -24,9 +24,6 @@ export default function Login({ setIsLoggedIn }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validate()) return;
-
-        setStatus("Sending...");
-
         try {
             const response = await fetch("http://localhost:5000/api/user/login", {
                 method: "POST",
@@ -43,7 +40,7 @@ export default function Login({ setIsLoggedIn }) {
 
             const data = await response.json();
             localStorage.setItem('token', data.jwt);
-            localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, isAdmin: data.isAdmin }));
+            localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, isAdmin: data.isAdmin, id: data.id }));
 
             setStatus("Successfully logged in!");
             setEmail("");
@@ -60,18 +57,20 @@ export default function Login({ setIsLoggedIn }) {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label>email: <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete='email' /> </label>
-                {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
-                <label>password: <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></label>
-                {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
-                <button type='submit'>Login</button>
+        <div className='login-page'>
+            <form onSubmit={handleSubmit} className='login-form'>
+                <h2>Login</h2>
+                <label>Email: <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete='email'
+                    placeholder='milo@gmail.com' /> </label>
+                {errors.email && <p className='error'>{errors.email}</p>}
+                <label>Password: <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='********' /></label>
+                {errors.password && <p className='error'>{errors.password}</p>}
+                <button type='submit' className='primary-btn'>Login</button>
             </form>
-            <form onSubmit={handleRegiserSubmit}>
-                <button type='submit'>Register</button>
+            <form onSubmit={handleRegiserSubmit} className='register-form-login'>
+                <button type='submit' className='secondary-btn'>Register</button>
             </form>
-            {status && <p>{status}</p>}
+            {status && <p className='status'>{status}</p>}
         </div>
     );
 }

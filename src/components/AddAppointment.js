@@ -2,10 +2,20 @@ import { useState } from "react";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-export default function AddAppointment(user) {
-    const [startTime, setStartTime] = useState(new Date());
+export default function AddAppointment({ user, reloadAppointments }) {
     const [status, setStatus] = useState("");
     const [excludedTimes, setExludedTimes] = useState([]);
+
+    /* Datepicker shows current date and time as default so user can make wrong appointments 
+        Get the current hour without minutes and add 1
+    */
+    const getNextHour = () => {
+        const now = new Date();
+        now.setMinutes(0, 0, 0);
+        now.setHours(now.getHours() + 1);
+        return now;
+    }
+    const [startTime, setStartTime] = useState(getNextHour());
 
     const handleClick = async () => {
         const token = localStorage.getItem('token');
@@ -27,11 +37,13 @@ export default function AddAppointment(user) {
                 throw new Error(errorData.message);
             }
             setStatus("Appointment added");
+            reloadAppointments();
         } catch (error) {
             setStatus(error.message);
         }
     };
 
+    /* Fetch all appointments for selected date and add to excluded times list */
     const handleOnChange = async (date) => {
         const token = localStorage.getItem('token');
         setStartTime(date);
@@ -49,12 +61,11 @@ export default function AddAppointment(user) {
 
         const times = data.map(d => new Date(d.startTime));
         setExludedTimes(times);
-        console.log(data);
     }
     return (
-        <div className="Date">
+        <div className="add-appointment">
             <h3>Select appointment date and time</h3>
-            <DatePicker
+            <DatePicker className="datepicker"
                 selected={startTime}
                 onChange={handleOnChange}
                 showTimeSelect
@@ -68,8 +79,8 @@ export default function AddAppointment(user) {
                 popperPlacement="right-start"
                 excludeTimes={excludedTimes}
             />
-            <button onClick={handleClick}>Accept</button>
-            {status && <p style={{ color: 'red' }}>{status}</p>}
+            <button onClick={handleClick} className="accept-btn">Accept</button>
+            {status && <p className="status">{status}</p>}
         </div>
     );
 }

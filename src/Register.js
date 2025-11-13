@@ -41,8 +41,6 @@ export default function Register() {
         e.preventDefault();
 
         if (!validate()) return;
-
-        setStatus("Sending...");
         const address = { street, postalcode, city };
 
         try {
@@ -67,27 +65,52 @@ export default function Register() {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label>Name: <input type="text" value={name} onChange={(e) => setName(e.target.value)} /></label><br />
-                {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
-                <label>Surname: <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} /></label><br />
-                {errors.surname && <p style={{ color: 'red' }}>{errors.surname}</p>}
-                <label>Email: <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" /></label><br />
-                {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
-                <label>Password: <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></label><br />
-                {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
-                <label>Iban: <input type="text" value={iban} onChange={(e) => setIban(e.target.value)} /></label><br />
-                {errors.iban && <p style={{ color: 'red' }}>{errors.iban}</p>}
-                <label>Street: <input type="text" value={street} onChange={(e) => setStreet(e.target.value)} /></label><br />
-                {errors.street && <p style={{ color: 'red' }}>{errors.street}</p>}
-                <label>Postalcode: <input type="text" value={postalcode} onChange={(e) => setPostalcode(e.target.value)} /></label><br />
-                {errors.postalcode && <p style={{ color: 'red' }}>{errors.postalcode}</p>}
-                <label>City: <input type="text" value={city} onChange={(e) => setCity(e.target.value)} /></label><br />
-                {errors.city && <p style={{ color: 'red' }}>{errors.city}</p>}
-                <button type="submit">Register</button>
+        <div className="register-page">
+            <form onSubmit={handleSubmit} className="register-form">
+                <h2>Create an Account</h2>
+                <div className="form-group">
+                    <label>Name: <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Milo" /></label><br />
+                    {errors.name && <p className='error'>{errors.name}</p>}
+                </div>
+                <div className="form-group">
+                    <label>Surname: <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} placeholder="Claus" /></label><br />
+                    {errors.surname && <p className='error'>{errors.surname}</p>}
+                </div>
+
+                <div className="form-group">
+                    <label>Email: <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" placeholder="miloclaus@gmail.com" /></label><br />
+                    {errors.email && <p className='error'>{errors.email}</p>}
+                </div>
+
+                <div className="form-group">
+                    <label>Password: <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="********" /></label><br />
+                    {errors.password && <p className='error'>{errors.password}</p>}
+                </div>
+
+                <div className="form-group">
+                    <label>Iban: <input type="text" value={iban} onChange={(e) => setIban(e.target.value)} placeholder="BE12 3456 7891 1234" /></label><br />
+                    {errors.iban && <p className='error'>{errors.iban}</p>}
+                </div>
+
+                <div className="form-group">
+                    <label>Street: <input type="text" value={street} onChange={(e) => setStreet(e.target.value)} placeholder="Zelebaan 17" /></label><br />
+                    {errors.street && <p className='error'>{errors.street}</p>}
+                </div>
+
+                <div className="form-row">
+                    <div className="form-group half">
+                        <label>Postalcode: <input type="text" value={postalcode} onChange={(e) => setPostalcode(e.target.value)} placeholder="9160" /></label><br />
+                        {errors.postalcode && <p className='error'>{errors.postalcode}</p>}
+                    </div>
+                    <div className="form-group half">
+                        <label>City: <input type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Lokeren" /></label><br />
+                        {errors.city && <p className='error'>{errors.city}</p>}
+                    </div>
+                </div>
+
+                <button type="submit" className="primary-btn">Register</button>
             </form>
-            {status && <p>{status}</p>}
+            {status && <p className='status'>{status}</p>}
         </div>
     );
 }
