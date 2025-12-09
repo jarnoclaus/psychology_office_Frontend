@@ -2,9 +2,11 @@ import { useState } from "react";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-export default function AddAppointment({ user, reloadAppointments }) {
+export default function AddAppointment({ user, allUsers }) {
     const [status, setStatus] = useState("");
     const [excludedTimes, setExludedTimes] = useState([]);
+    const [inputSearch, setInputSearch] = useState("");
+    const [userId, setUserId] = useState(0);
 
     /* Datepicker shows current date and time as default so user can make wrong appointments 
         Get the current hour without minutes and add 1
@@ -17,27 +19,32 @@ export default function AddAppointment({ user, reloadAppointments }) {
     }
     const [startTime, setStartTime] = useState(getNextHour());
 
+    /* Add appointment */
     const handleClick = async () => {
         const token = localStorage.getItem('token');
         try {
             const pad = n => n.toString().padStart(2, '0');
             const localDateTime = `${startTime.getFullYear()}-${pad(startTime.getMonth() + 1)}-${pad(startTime.getDate())}T${pad(startTime.getHours())}:${pad(startTime.getMinutes())}`;
 
-            const response = await fetch('http://localhost:5000/api/appointments/add', {
+            const api = user.isAdmin ? 'http://localhost:5000/api/appointments/admin/add' : 'http://localhost:5000/api/appointments/add';
+            const apiBody = user.isAdmin ? JSON.stringify({ startTime: localDateTime, userId: userId }) : JSON.stringify({ startTime: localDateTime });
+
+            const response = await fetch(api, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ startTime: localDateTime })
+                body: apiBody
             });
-
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message);
             }
+
+            setInputSearch('');
+            setUserId(0);
             setStatus("Appointment added");
-            reloadAppointments();
         } catch (error) {
             setStatus(error.message);
         }
@@ -45,6 +52,17 @@ export default function AddAppointment({ user, reloadAppointments }) {
 
     /* Fetch all appointments for selected date and add to excluded times list */
     const handleOnChange = async (date) => {
+        /* If date is null, undefined or minutes are not 0 show error
+            Users can still edit the date/time DatePicker field
+        */
+        if (!date) return;
+
+        if (date.getMinutes() !== 0) {
+            setStatus("Please select a full hour.");
+            return;
+        }
+        setStatus('');
+
         const token = localStorage.getItem('token');
         setStartTime(date);
 
@@ -62,6 +80,10 @@ export default function AddAppointment({ user, reloadAppointments }) {
         const times = data.map(d => new Date(d.startTime));
         setExludedTimes(times);
     }
+
+    /* When a state changes, component re-renders so list gets updated */
+    const filteredUsers = allUsers?.filter(u => u.fullName.toLowerCase().includes(inputSearch.toLowerCase()));
+
     return (
         <div className="add-appointment">
             <h3>Select appointment date and time</h3>
@@ -79,8 +101,20 @@ export default function AddAppointment({ user, reloadAppointments }) {
                 popperPlacement="right-start"
                 excludeTimes={excludedTimes}
             />
+            {user.isAdmin && <label>Client: <input type="search" value={inputSearch} onChange={(e) => setInputSearch(e.target.value)} /></label>}
+            {allUsers && inputSearch && filteredUsers !== 0 && <div className="user-list" >
+                <ul>
+                    {filteredUsers.map(u => {
+                        return (
+                            <li key={u.id} onClick={() => setUserId(u.id)}
+                                className={userId === u.id ? 'user-item selected' : 'user-item'}
+                            >{u.fullName} ({u.email})</li>
+                        )
+                    })}
+                </ul>
+            </div>}
             <button onClick={handleClick} className="accept-btn">Accept</button>
             {status && <p className="status">{status}</p>}
-        </div>
+        </div >
     );
 }

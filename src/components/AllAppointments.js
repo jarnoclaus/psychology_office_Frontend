@@ -1,8 +1,6 @@
 export default function AllAppointments({ user, appointments, status }) {
-
     return (
         <div>
-            {status && <p className="status">{status}</p>}
             {!user.isAdmin ? (
                 <div className="table-container">
                     <table>
@@ -66,6 +64,7 @@ export default function AllAppointments({ user, appointments, status }) {
                 </div>
             )
             }
+            {status && appointments.length === 0 && <p className="status">{status}</p>}
         </div>
     )
 }

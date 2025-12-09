@@ -148,8 +148,41 @@ td {
   font-size: 16px;
   color: #34495e;
   padding: 10px 0;
-  border-top: 1px solid #bdc3c7;
   font-style: italic;
+  font-weight: 500;
+  border-top: 1px solid #bdc3c7;
+}
+
+.user-list {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0;
+  margin-top: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.user-list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.user-item:hover {
+  background-color: #f0f0f0;
+}
+
+.user-item.selected {
+  background-color: #1abc9c;
+  color: white;
   font-weight: 500;
 }
 
@@ -296,4 +329,180 @@ input:focus {
 
 .register-form .primary-btn {
   margin-top: 10px;
+}
+
+/* View Clients */
+
+.viewclients-appointments {
+  width: 300px;
+}
+
+.viewclients h2 {
+  color: #2c3e50;
+}
+
+.warning {
+  color: #b71c1c;
+  background-color: #ffebee;
+  border: 1px solid #f44336;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 14px;
+  margin: 10px 0;
+  width: 315px;
+}
+
+.confirm-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.confirm-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.confirm-buttons button.yes {
+  background-color: #b71c1c;
+  color: #fff;
+}
+
+.confirm-buttons button.yes:hover {
+  background-color: #d32f2f;
+}
+
+.confirm-buttons button.no {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.confirm-buttons button.no:hover {
+  background-color: #bdbdbd;
+}
+
+/* Home */
+.homepage .head {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.head h1 {
+  margin-bottom: -10px;
+  color: #F5F5F5;
+}
+
+.homepage {
+  background-color: rgba(174, 214, 228, 0.363);
+  height: auto;
+  margin-top: -21px;
+}
+
+.head button {
+  padding: 12px 28px;
+  border-radius: 30px;
+  background: rgba(174, 214, 228, 0.25);
+  border: 2px solid rgba(174, 214, 228, 0.7);
+  color: #ffffff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.head button:hover {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+.head-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.banner {
+  position: relative;
+  height: 65vh;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)), url('./images/background.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  width: 900px;
+  height: 260px;
+  display: flex;
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-text {
+  flex: 1.2;
+  padding: 35px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-text h2 {
+  margin: 0 0 15px;
+  color: #2a3b47;
+  font-size: 1.5rem;
+}
+
+.card-text p {
+  margin: 0;
+  color: #3b4f5a;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.card-img {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
