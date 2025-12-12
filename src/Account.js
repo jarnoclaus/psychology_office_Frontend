@@ -45,14 +45,14 @@ export default function AccountPage() {
                     <button onClick={() => setView("All")} className={view === 'All' ? 'active' : ''}>Show all appointments</button>
                     <button onClick={() => setView("Add")} className={view === 'Add' ? 'active' : ''}>Add appointment</button>
                     {user.isAdmin && <button onClick={() => setView("Clients")} className={view === 'Clients' ? 'active' : ''}>View clients</button>}
-                    <button onClick={() => setView("Info")} className={view === 'Info' ? 'active' : ''}>Account Information</button>
+                    {/* <button onClick={() => setView("Info")} className={view === 'Info' ? 'active' : ''}>Account Information</button> */}
                 </aside>
 
                 <main className="content">
                     {view === "All" && <AllAppointments user={user} appointments={appointments} status={status} />}
                     {view === "Add" && <AddAppointment user={user} allUsers={users} />}
                     {view === "Clients" && <ViewClients users={users} />}
-                    {view === "Info" && <AccountInformation />}
+                    {/* {view === "Info" && <AccountInformation />} */}
                 </main>
             </div>
         </div >
