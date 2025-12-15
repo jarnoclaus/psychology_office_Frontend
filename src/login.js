@@ -53,6 +53,7 @@ export default function Login({ setIsLoggedIn }) {
     };
 
     const handleRegiserSubmit = () => {
+        e.preventDefault();
         navigate('/register');
     }
 
