@@ -81,7 +81,7 @@ export default function ViewClients({ users }) {
 async function FetchAppointmentsForUser(userId, setAppointments, setStatus, setSelectedAppointment, clearStatus = true) {
     const token = localStorage.getItem('token');
     try {
-        const response = await fetch(`http://localhost:5000/api/appointments/user/${userId}`, {
+        const response = await fetch(`https://psychologyoffice.onrender.com/api/appointments/user/${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ async function FetchAppointmentsForUser(userId, setAppointments, setStatus, setS
 async function DeleteAppointmentForUser(selectedAppointment, selectedUserId, setStatus, setSelectedAppointment, handleClick) {
     const token = localStorage.getItem('token');
     try {
-        const response = await fetch(`http://localhost:5000/api/appointments/${selectedAppointment.id}`, {
+        const response = await fetch(`https://psychologyoffice.onrender.com/api/appointments/${selectedAppointment.id}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`

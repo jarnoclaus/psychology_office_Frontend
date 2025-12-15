@@ -62,7 +62,7 @@ export default function AccountPage() {
 /* Functions in parent page because both children pages need access */
 async function FetchAllAppointments(setAppointments) {
     const token = localStorage.getItem('token');
-    const response = await fetch('http://localhost:5000/api/appointments', {
+    const response = await fetch('https://psychologyoffice.onrender.com/api/appointments', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ async function FetchAllAppointments(setAppointments) {
 async function FetchAllAppointmentsForUser(setAppointments, setStatus) {
     const token = localStorage.getItem('token');
     try {
-        const response = await fetch('http://localhost:5000/api/appointments/user', {
+        const response = await fetch('https://psychologyoffice.onrender.com/api/appointments/user', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ async function FetchAllAppointmentsForUser(setAppointments, setStatus) {
 async function FetchAllUsers(setUsers) {
     const token = localStorage.getItem('token');
 
-    const response = await fetch('http://localhost:5000/api/user/allusers', {
+    const response = await fetch('https://psychologyoffice.onrender.com/api/user/allusers', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

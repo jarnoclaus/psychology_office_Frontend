@@ -23,11 +23,11 @@ export default function AddAppointment({ user, allUsers }) {
     const handleClick = async () => {
         const token = localStorage.getItem('token');
         try {
-            const pad = n => n.toString().padStart(2, '0');
-            const localDateTime = `${startTime.getFullYear()}-${pad(startTime.getMonth() + 1)}-${pad(startTime.getDate())}T${pad(startTime.getHours())}:${pad(startTime.getMinutes())}`;
-
-            const api = user.isAdmin ? 'http://localhost:5000/api/appointments/admin/add' : 'http://localhost:5000/api/appointments/add';
-            const apiBody = user.isAdmin ? JSON.stringify({ startTime: localDateTime, userId: userId }) : JSON.stringify({ startTime: localDateTime });
+            // const pad = n => n.toString().padStart(2, '0');
+            // const localDateTime = `${startTime.getFullYear()}-${pad(startTime.getMonth() + 1)}-${pad(startTime.getDate())}T${pad(startTime.getHours())}:${pad(startTime.getMinutes())}`;
+            const utcDateTimeString = startTime.toISOString();
+            const api = user.isAdmin ? 'https://psychologyoffice.onrender.com/api/appointments/admin/add' : 'https://psychologyoffice.onrender.com/api/appointments/add';
+            const apiBody = user.isAdmin ? JSON.stringify({ startTime: utcDateTimeString, userId: userId }) : JSON.stringify({ startTime: utcDateTimeString });
 
             const response = await fetch(api, {
                 method: 'POST',
@@ -66,8 +66,9 @@ export default function AddAppointment({ user, allUsers }) {
         const token = localStorage.getItem('token');
         setStartTime(date);
 
-        const dateString = date.toISOString().split('T')[0];
-        const response = await fetch(`http://localhost:5000/api/appointments/by-date/${dateString}`, {
+        const pad = (n) => n.toString().padStart(2, '0');
+        const dateString = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+        const response = await fetch(`https://psychologyoffice.onrender.com/api/appointments/by-date/${dateString}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
