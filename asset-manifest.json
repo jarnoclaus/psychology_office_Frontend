@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/psychology_office_Frontend/static/css/main.dea8953c.css",
-    "main.js": "/psychology_office_Frontend/static/js/main.3dab8333.js",
+    "main.js": "/psychology_office_Frontend/static/js/main.b2355f8d.js",
     "static/media/background.png": "/psychology_office_Frontend/static/media/background.9834c608ef33a42d3893.png",
     "static/media/group_therapy.png": "/psychology_office_Frontend/static/media/group_therapy.54240d4583d3e2974257.png",
     "static/media/First-card.png": "/psychology_office_Frontend/static/media/First-card.687b7d35080d7b8c7b86.png",
     "static/media/Account.png": "/psychology_office_Frontend/static/media/Account.d5b2abb5b69d086c2bfa.png",
     "index.html": "/psychology_office_Frontend/index.html",
     "main.dea8953c.css.map": "/psychology_office_Frontend/static/css/main.dea8953c.css.map",
-    "main.3dab8333.js.map": "/psychology_office_Frontend/static/js/main.3dab8333.js.map"
+    "main.b2355f8d.js.map": "/psychology_office_Frontend/static/js/main.b2355f8d.js.map"
   },
   "entrypoints": [
     "static/css/main.dea8953c.css",
-    "static/js/main.3dab8333.js"
+    "static/js/main.b2355f8d.js"
   ]
 }
