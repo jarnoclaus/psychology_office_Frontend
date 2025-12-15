@@ -2,9 +2,8 @@ import FirstCard from './images/First-card.png'
 import { useNavigate } from 'react-router-dom'
 import SecondCard from './images/group_therapy.png'
 
-export default function HomePage() {
+export default function HomePage({ isLoggedIn }) {
     const navigate = useNavigate();
-    const token = localStorage.getItem('token');
 
     const handleLoginClick = async () => navigate('/login');
     const handleRegisterClick = async () => navigate('register');
@@ -14,7 +13,7 @@ export default function HomePage() {
                 <div className='head'>
                     <h1>Welcome to Laeny's psychological guidance office</h1>
                     <h2>A safe space to understand, grow and heal</h2>
-                    {token === null && <div className='head-buttons'>
+                    {!isLoggedIn && <div className='head-buttons'>
                         <button onClick={handleLoginClick}>Login</button>
                         <button onClick={handleRegisterClick}>Register</button>
                     </div>}
