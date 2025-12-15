@@ -52,7 +52,7 @@ export default function Login({ setIsLoggedIn }) {
         }
     };
 
-    const handleRegiserSubmit = () => {
+    const handleRegiserSubmit = (e) => {
         e.preventDefault();
         navigate('/register');
     }
