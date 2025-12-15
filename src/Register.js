@@ -88,7 +88,7 @@ export default function Register() {
                 </div>
 
                 <div className="form-group">
-                    <label>Iban: <input type="text" value={iban} onChange={(e) => setIban(e.target.value)} placeholder="BE12 3456 7891 1234" /></label><br />
+                    <label>Iban: <input type="text" value={iban} onChange={(e) => setIban(e.target.value)} placeholder="BE68 5390 0754 7034 -> is valid om te testen" /></label><br />
                     {errors.iban && <p className='error'>{errors.iban}</p>}
                 </div>
 
